@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main() {
+
+    char linha[10]{'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
+    char coluna[10]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+
+    //montando o tabuleiro
+    int matriz[10][10]; //declaração da matriz
+
+    // Inicializando os elementos da matriz com '0' (água)
+
+    for (int i = 0; i < 10; i++) {
+        for (int j = 0; j < 10; j++) {
+            matriz[i][j] = 0;
+        }
+    }
+
+    // incializando o gerador de números aleatórios
+    srand(time(NULL));
+
+    //colocando o barco horizontal (3 posições)
+    int linha_h = rand() % 10;
+    int coluna_h = rand() % 8; // garantir que o barco caiba na linha
+    for (int i = 0; i < 3; i++) {
+        matriz[linha_h][coluna_h + i] = 3;
+    }
+
+    //colocando o barco na vertical (3 posições)
+    int linha_v = rand() % 8; //garantir que o barco caiba na coluna
+    int coluna_v = rand() % 10;
+    for (int i = 0; i < 10; i++) {
+        matriz[linha_v + i][coluna_v] = 3;
+    }
+
+    //imprimindo o tabuleiro
+    printf(" ");
+    for (int i = 0; i < 10; i++) {
+        printf("%d", coluna[i]);
+    }
+    printf("\n");
+
+    for (int i = 0; i < 10; i++) {
+        printf("%c", linha[i]);
+        for (int j = 0; j < 10; j++){
+            printf("%d", matriz [i][j]);
+        }
+    printf("\n");
+    }
+    return 0;
+}
+
